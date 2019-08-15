@@ -1,0 +1,7 @@
+参考资料：
+https://blog.csdn.net/deniro_li/article/details/80507863
+
+一、MVC 与 MVVM 区别
+
+  主要就是MVC中Controller演变成MVVM中的viewModel
+  MVVM主要解决了MVC中大量的DOM操作使页面渲染性能降低，加载速度变慢，影响用户体验。
