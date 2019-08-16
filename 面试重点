@@ -48,25 +48,43 @@ https://segmentfault.com/a/1190000016885832?utm_source=tag-newest
   
   12.react diff 原理（常考，大厂必考）
   把树形结构按照层级分解，只比较同级元素。
-给列表结构的每个单元添加唯一的 key 属性，方便比较。
-React 只会匹配相同 class 的 component（这里面的 class 指的是组件的名字）
-合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.
-选择性子树渲染。开发人员可以重写 shouldComponentUpdate 提高 diff 的性能。
+  给列表结构的每个单元添加唯一的 key 属性，方便比较。
+  React 只会匹配相同 class 的 component（这里面的 class 指的是组件的名字）
+  合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.
+  选择性子树渲染。开发人员可以重写 shouldComponentUpdate 提高 diff 的性能。
 
 13、React 中 refs 的作用是什么？
-Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。
-function CustomForm ({handleSubmit}) {
-  let inputElement
-  return (
-    <form onSubmit={() => handleSubmit(inputElement.value)}>
-      <input
-        type='text'
-        ref={(input) => inputElement = input} />
-      <button type='submit'>Submit</button>
-    </form>
-  )
-}
+  Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。
+  function CustomForm ({handleSubmit}) {
+    let inputElement
+    return (
+      <form onSubmit={() => handleSubmit(inputElement.value)}>
+        <input
+          type='text'
+          ref={(input) => inputElement = input} />
+        <button type='submit'>Submit</button>
+      </form>
+    )
+  }
 
 14、类组件(Class component)和函数式组件(Functional component)之间有何不同
-类组件不仅允许你使用更多额外的功能，如组件自身的状态和生命周期钩子，也能使组件直接访问 store 并维持状态
-当组件仅是接收 props，并将组件自身渲染到页面时，该组件就是一个 '无状态组件(stateless component)'，可以使用一个纯函数来创建这样的组件。这种组件也被称为哑组件(dumb components)或展示组件
+  类组件不仅允许你使用更多额外的功能，如组件自身的状态和生命周期钩子，也能使组件直接访问 store 并维持状态
+  当组件仅是接收 props，并将组件自身渲染到页面时，该组件就是一个 '无状态组件(stateless component)'，可以使用一个纯函数来创建这样的组件。这种组件也被称为哑组件(dumb components)或展示组件
+
+15、何为受控组件(controlled component)
+  在 HTML 中，类似 <input>, <textarea> 和 <select> 这样的表单元素会维护自身的状态，并基于用户的输入来更新。当用户提交表单时，前面提到的元素的值将随表单一起被发送。但在 React 中会有些不同，包含表单元素的组件将会在 state 中追踪输入的值，并且每次调用回调函数时，如 onChange 会更新 state，重新渲染组件。一个输入表单元素，它的值通过 React 的这种方式来控制，这样的元素就被称为"受控元素"。
+
+16、何为高阶组件(higher order component)
+  高阶组件是一个以组件为参数并返回一个新组件的函数。
+  常见：redux 的connect 函数
+  作用：
+    1）简单分享工具库和简单的组合
+    2）HOC 最好的方式是共享 React 组件之间的行为
+    
+ 17、React 中有三种构建组件的方式
+ React.createClass()、ES6 class 和无状态函数。
+ 
+
+
+
+
