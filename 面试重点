@@ -1,0 +1,72 @@
+参考资料：
+https://www.jianshu.com/p/dc53594d1d8b
+https://segmentfault.com/a/1190000016885832?utm_source=tag-newest
+
+一、基本知识
+  1. 区分Real DOM和Virtual DOM
+  
+  2. 什么是React？
+  
+  3. React有什么特点？
+  它使用虚拟DOM 而不是真正的DOM。
+  它可以进行服务器端渲染。
+  它遵循单向数据流或数据绑定。
+  
+  4. 列出React的一些主要优点。
+  
+  6. 什么是JSX？
+  
+  7. 你了解 Virtual DOM 吗？解释一下它的工作原理。
+  
+  8.React 中 keys 的作用是什么？ 
+  保证某个元素的 key 在其同级元素中具有唯一性
+  在 React Diff 算法中 React 会借助元素的 Key 值来判断该元素是新近创建的还是被移动而来的元素，从而减少不必要的元素重渲染。
+  
+  9.调用 setState 之后发生了什么？
+  React 会将传入的参数对象与组件当前的状态合并，着手重新渲染整个 UI 界面,React 会自动计算出新的树与老树的节点差异，然后根据差异对界面进行最小化重渲染。
+  
+  10.react 生命周期函数
+  初始化阶段：
+
+  getDefaultProps:获取实例的默认属性
+  getInitialState:获取每个实例的初始化状态
+  componentWillMount：组件即将被装载、渲染到页面上
+  render:组件在这里生成虚拟的 DOM 节点
+  componentDidMount:组件真正在被装载之后
+  运行中状态：
+
+  componentWillReceiveProps:组件将要接收到属性的时候调用
+  shouldComponentUpdate:组件接受到新属性或者新状态的时候（可以返回 false，接收数据后不更新，阻止 render 调用，后面的函数不会被继续执行了）
+  componentWillUpdate:组件即将更新不能修改属性和状态
+  render:组件重新描绘
+  componentDidUpdate:组件已经更新
+  销毁阶段：
+
+  componentWillUnmount:组件即将销毁
+  
+  11.为什么虚拟 dom 会提高性能?(必考)
+  
+  12.react diff 原理（常考，大厂必考）
+  把树形结构按照层级分解，只比较同级元素。
+给列表结构的每个单元添加唯一的 key 属性，方便比较。
+React 只会匹配相同 class 的 component（这里面的 class 指的是组件的名字）
+合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.
+选择性子树渲染。开发人员可以重写 shouldComponentUpdate 提高 diff 的性能。
+
+13、React 中 refs 的作用是什么？
+Refs 是 React 提供给我们的安全访问 DOM 元素或者某个组件实例的句柄。
+function CustomForm ({handleSubmit}) {
+  let inputElement
+  return (
+    <form onSubmit={() => handleSubmit(inputElement.value)}>
+      <input
+        type='text'
+        ref={(input) => inputElement = input} />
+      <button type='submit'>Submit</button>
+    </form>
+  )
+}
+
+14、类组件(Class component)和函数式组件(Functional component)之间有何不同
+类组件不仅允许你使用更多额外的功能，如组件自身的状态和生命周期钩子，也能使组件直接访问 store 并维持状态
+当组件仅是接收 props，并将组件自身渲染到页面时，该组件就是一个 '无状态组件(stateless component)'，可以使用一个纯函数来创建这样的组件。这种组件也被称为哑组件(dumb components)或展示组件
